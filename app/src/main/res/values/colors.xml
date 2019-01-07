@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D00D2B</color>
+    <color name="colorPrimaryDark">#FFA60D22</color>
+    <color name="colorAccent">#D00D2B</color>
+
+    <color name="jaguar">#262629</color>
+    <color name="midnightExpress">#8F939C</color>
+
+</resources>
