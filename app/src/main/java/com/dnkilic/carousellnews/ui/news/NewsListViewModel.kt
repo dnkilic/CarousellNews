@@ -6,7 +6,6 @@ import com.dnkilic.carousellnews.di.SCHEDULER_MAIN_THREAD
 import com.dnkilic.carousellnews.ui.base.BaseViewModel
 import com.dnkilic.carousellnews.repository.NewsRepository
 import com.dnkilic.carousellnews.repository.model.Command
-import com.dnkilic.carousellnews.repository.model.News
 import io.reactivex.Scheduler
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
@@ -31,7 +30,12 @@ class NewsListViewModel @Inject constructor(
                     .observeOn(observeOnScheduler)
                     .doOnSubscribe { syncNews.value = Command.Loading }
                     .subscribe({ news ->
-                        syncNews.value = Command.Success(news.sorted())
+                        if (news.isNotEmpty()) {
+                            syncNews.value = Command.Success(news.sorted())
+                        } else {
+                            syncNews.value = Command.Error(null)
+                        }
+
                     }, {
                         onSynchronizationError(it)
                     }))
